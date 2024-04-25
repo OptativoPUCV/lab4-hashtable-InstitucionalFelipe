@@ -52,7 +52,6 @@ void insertMap(HashMap * map, char * key, void * value) {
   
   }
 
-}
 
 void enlarge(HashMap * map) {
    /* int old_capacity = map->capacity;

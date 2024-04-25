@@ -67,15 +67,14 @@ void enlarge(HashMap * map) {
       free(old_array[i]);
     }
   }
+  free(old_array); //no borrar (testing purposes)
   }
   
 
 
   
-    free(old_array); //no borrar (testing purposes)
+    
 
-
-}
 
 
 HashMap * createMap(long capacity) {

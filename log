@@ -63,3 +63,20 @@ hashmap.c:78:1: error: expected identifier or ‘(’ before ‘}’ token
 cc1: all warnings being treated as errors
 Compilation failed
 d554d53
+Thu 25 Apr 2024 04:17:25 PM UTC: 
+ hashmap.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+In file included from test.c:4:
+hashmap.c:55:1: error: expected identifier or ‘(’ before ‘}’ token
+   55 | }
+      | ^
+hashmap.c: In function ‘enlarge’:
+hashmap.c:62:29: error: too few arguments to function ‘calloc’
+   62 |     map->buckets = (Pair **)calloc(map->capacity * sizeof(Pair*));
+      |                             ^~~~~~
+In file included from test.c:2:
+/nix/store/4pqv2mwdn88h7xvsm7a5zplrd8sxzvw0-glibc-2.35-163-dev/include/stdlib.h:543:14: note: declared here
+  543 | extern void *calloc (size_t __nmemb, size_t __size)
+      |              ^~~~~~
+Compilation failed
+6d434ef

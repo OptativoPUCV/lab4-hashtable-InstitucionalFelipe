@@ -55,7 +55,7 @@ void insertMap(HashMap * map, char * key, void * value) {
 }
 
 void enlarge(HashMap * map) {
-    int old_capacity = map->capacity;
+   /* int old_capacity = map->capacity;
     Pair **old_array = map->buckets;
   
     map->capacity = 2 * old_capacity;
@@ -68,6 +68,7 @@ void enlarge(HashMap * map) {
     }
   }
   free(old_array); //no borrar (testing purposes)
+  */
   }
   
 

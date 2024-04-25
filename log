@@ -1,0 +1,31 @@
+Thu 25 Apr 2024 04:16:28 PM UTC: 
+ hashmap.c | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+In file included from test.c:4:
+hashmap.c:55:1: error: expected identifier or ‘(’ before ‘}’ token
+   55 | }
+      | ^
+hashmap.c: In function ‘enlarge’:
+hashmap.c:62:29: error: too few arguments to function ‘calloc’
+   62 |     map->buckets = (Pair **)calloc(map->capacity * sizeof(Pair*));
+      |                             ^~~~~~
+In file included from test.c:2:
+/nix/store/4pqv2mwdn88h7xvsm7a5zplrd8sxzvw0-glibc-2.35-163-dev/include/stdlib.h:543:14: note: declared here
+  543 | extern void *calloc (size_t __nmemb, size_t __size)
+      |              ^~~~~~
+In file included from test.c:4:
+hashmap.c: At top level:
+hashmap.c:75:5: error: data definition has no type or storage class [-Werror]
+   75 |     enlarge_called = 1; //no borrar (testing purposes)
+      |     ^~~~~~~~~~~~~~
+hashmap.c:75:5: error: type defaults to ‘int’ in declaration of ‘enlarge_called’ [-Werror=implicit-int]
+hashmap.c:75:5: error: redefinition of ‘enlarge_called’
+hashmap.c:10:5: note: previous definition of ‘enlarge_called’ with type ‘int’
+   10 | int enlarge_called=0;
+      |     ^~~~~~~~~~~~~~
+hashmap.c:78:1: error: expected identifier or ‘(’ before ‘}’ token
+   78 | }
+      | ^
+cc1: all warnings being treated as errors
+Compilation failed
+3b1f717

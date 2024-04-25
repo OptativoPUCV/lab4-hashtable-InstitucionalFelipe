@@ -72,7 +72,7 @@ void enlarge(HashMap * map) {
 
 
   
-    enlarge_called = 1; //no borrar (testing purposes)
+    free(old_array); //no borrar (testing purposes)
 
 
 }

@@ -86,9 +86,9 @@ void eraseMap(HashMap * map,  char * key) {
   int posicion = hash(key,map->capacity);
   if(map->buckets[posicion] != NULL)
   {
-    map->size--;
     free(map->buckets[posicion]);
     map->buckets[posicion] = NULL;
+    map->size--;
   }
   return;
 }

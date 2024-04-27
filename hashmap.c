@@ -84,11 +84,13 @@ HashMap * createMap(long capacity) {
 
 void eraseMap(HashMap * map,  char * key) {
   int posicion = hash(key,map->capacity);
-  if(map->buckets[posicion] != NULL)
-  {
-    free(map->buckets[posicion]);
-    map->buckets[posicion] = NULL;
-    map->size--;
+
+  while (map->buckets[posicion] != NULL){
+    if(is_equal(map->buckets[posicion]->key, key)){
+      free(map->buckets[posicion]);
+      map->buckets[posicion] = NULL;
+      map->size--;
+    }
   }
   return;
 }

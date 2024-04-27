@@ -90,6 +90,7 @@ void eraseMap(HashMap * map,  char * key) {
     free(map->buckets[posicion]);
     map->buckets[posicion] = NULL;
   }
+  return;
 }
 
 Pair * searchMap(HashMap * map,  char * key) {   

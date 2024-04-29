@@ -44,6 +44,7 @@ void insertMap(HashMap * map, char * key, void * value) {
   
   int posicion = hash(key,map->capacity);
   Pair* aux = malloc(sizeof(Pair));
+  int start = posicion; 
   
   while (map->buckets[posicion] != NULL) {
     if (is_equal(map->buckets[posicion]->key, key)) {
@@ -51,7 +52,11 @@ void insertMap(HashMap * map, char * key, void * value) {
       map->buckets[posicion]->value = value;
       return;
     }
-    posicion = (posicion + 1) % map->capacity;
+    posicion = (posicion + 1) % map->capacity; // Siguiente posición en caso de colisión
+    if (posicion == start) {
+        // Si hemos vuelto al inicio, la tabla está llena
+        // Considera redimensionar la tabla aquí
+        return;
   }
   aux = createPair(key, value);
   map->buckets[posicion] = aux;

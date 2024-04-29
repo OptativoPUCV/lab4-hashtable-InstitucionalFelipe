@@ -101,16 +101,7 @@ void eraseMap(HashMap * map,  char * key) {
 }
 
 Pair * searchMap(HashMap * map,  char * key) {   
-/*if(map == NULL || key == NULL) return NULL;
-  int posicion = hash(key, map->capacity);
-  while(map->buckets[posicion] != NULL && map->buckets[posicion]->key != NULL){
-    if(is_equal(map->buckets[posicion]->key, key)){
-      map->current = posicion;
-      return map->buckets[posicion];
-    }
-  }
-    return NULL;*/
-  if (map == NULL || key == NULL) return NULL;  // Verificación inicial de argumentos nulos
+  if (map == NULL || key == NULL) return NULL;  //Verificación inicial de argumentos nulos
 
   int posicion = hash(key, map->capacity);
   int start = posicion;  // Guarda la posición inicial para evitar bucles infinitos
@@ -121,18 +112,47 @@ Pair * searchMap(HashMap * map,  char * key) {
           map->current = posicion;  // Actualiza la posición actual si se encuentra la clave
           return map->buckets[posicion];
       }
-      posicion = (posicion + 1) % map->capacity;  // Sigue buscando con sondeo lineal
+      posicion = (posicion + 1) % map->capacity;  // Sigue buscando con sondeo lineal (Manejo de colisiones)
       if (posicion == start) break;  // Evita bucles infinitos verificando si ha recorrido toda la tabla
   }
   return NULL;  // Retorna NULL si no encuentra la clave
 }
 
-Pair * firstMap(HashMap * map) {
+/*if(map == NULL || key == NULL) return NULL;
+int posicion = hash(key, map->capacity);
+while(map->buckets[posicion] != NULL && map->buckets[posicion]->key != NULL){
+  if(is_equal(map->buckets[posicion]->key, key)){
+    map->current = posicion;
+    return map->buckets[posicion];
+  }
+}
+  return NULL;*/
 
+Pair * firstMap(HashMap * map) {
+if(map == NULL|| map->size == 0)
     return NULL;
+for(int i = 0; i < map->capacity; i++){
+  if(map->buckets[i] != NULL && map->buckets[i]->key != NULL){
+    map->current = i;
+    return map->buckets[i];
+    }
+  }
+  return NULL;
 }
 
 Pair * nextMap(HashMap * map) {
-
+  if(map == NULL || map->size == 0 || map->current == -1)
     return NULL;
+  
+  int posicion = map->current;
+  
+  while(posicion < map->capacity){
+    if(map->buckets[posicion] != NULL && map->buckets[posicion]->key != NULL){
+      map->current = posicion;
+      return map->buckets[posicion];
+    }
+    posicion++;
+    
+  }
+  return NULL;
 }

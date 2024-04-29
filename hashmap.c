@@ -83,7 +83,9 @@ HashMap * createMap(long capacity) {
 }
 
 void eraseMap(HashMap * map,  char * key) {
-   if (map == NULL || key == NULL) return NULL;
+   if (map == NULL || key == NULL){
+     return;
+   } 
     
     int posicion = hash(key, map->capacity);
     while (map->buckets[posicion] != NULL &&

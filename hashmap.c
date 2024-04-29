@@ -48,20 +48,17 @@ void insertMap(HashMap * map, char * key, void * value) {
   
   while (map->buckets[posicion] != NULL) {
     if (is_equal(map->buckets[posicion]->key, key)) {
-      free(map->buckets[posicion]->value);  // Liberar el valor anterior si es necesario
+      free(map->buckets[posicion]->value);
       map->buckets[posicion]->value = value;
       return;
     }
-    posicion = (posicion + 1) % map->capacity; // Siguiente posición en caso de colisión
-    if (posicion == start) {
-        // Si hemos vuelto al inicio, la tabla está llena
-        // Considera redimensionar la tabla aquí
+    posicion = (posicion + 1) % map->capacity; 
+    if (posicion == start) 
         return;
-  }
   aux = createPair(key, value);
   map->buckets[posicion] = aux;
   map->size++;
-  
+  }
 }
 
 

@@ -109,8 +109,22 @@ Pair * searchMap(HashMap * map,  char * key) {
       return map->buckets[posicion];
     }
   }
-*/
-    return NULL;
+    return NULL;*/
+  if (map == NULL || key == NULL) return NULL;  // Verificación inicial de argumentos nulos
+
+  int posicion = hash(key, map->capacity);
+  int start = posicion;  // Guarda la posición inicial para evitar bucles infinitos
+
+  // Bucle para manejar el sondeo lineal
+  while (map->buckets[posicion] != NULL) {
+      if (map->buckets[posicion]->key != NULL && is_equal(map->buckets[posicion]->key, key)) {
+          map->current = posicion;  // Actualiza la posición actual si se encuentra la clave
+          return map->buckets[posicion];
+      }
+      posicion = (posicion + 1) % map->capacity;  // Sigue buscando con sondeo lineal
+      if (posicion == start) break;  // Evita bucles infinitos verificando si ha recorrido toda la tabla
+  }
+  return NULL;  // Retorna NULL si no encuentra la clave
 }
 
 Pair * firstMap(HashMap * map) {

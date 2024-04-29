@@ -55,10 +55,10 @@ void insertMap(HashMap * map, char * key, void * value) {
     posicion = (posicion + 1) % map->capacity; 
     if (posicion == start) 
         return;
+  }
   aux = createPair(key, value);
   map->buckets[posicion] = aux;
   map->size++;
-  }
 }
 
 

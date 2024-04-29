@@ -144,15 +144,14 @@ Pair * nextMap(HashMap * map) {
   if(map == NULL || map->size == 0 || map->current == -1)
     return NULL;
   
-  int posicion = map->current;
-  
-  while(posicion < map->capacity){
-    if(map->buckets[posicion] != NULL && map->buckets[posicion]->key != NULL){
-      map->current = posicion;
-      return map->buckets[posicion];
+  for(int i = map->current + 1; i < map->capacity; i++){
+    if(map->buckets[i] != NULL && map->buckets[i]->key != NULL){
+      map->current = i;
+      return map->buckets[i];
     }
-    posicion++;
-    
+    return NULL;
   }
-  return NULL;
+  
+
+  
 }
